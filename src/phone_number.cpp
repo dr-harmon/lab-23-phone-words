@@ -19,7 +19,15 @@ const vector<char> KEYPAD[] = {
 
 void findPhoneWords(const vector<int>& number, string word, int digitIndex, vector<string>& words)
 {
-    // TODO
+    if (digitIndex == number.size()) {
+        words.push_back(word);
+        return;
+    }
+
+    int digit = number[digitIndex];
+    for (int i = 0; i < KEYPAD[digit].size(); i++) {
+        findPhoneWords(number, word + KEYPAD[digit][i], digitIndex + 1, words);
+    }
 }
 
 void findPhoneWords(const vector<int>& number, vector<string>& words)
